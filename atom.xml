@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>猪圈。</title>
+  <title>不想吃外卖</title>
   
-  <subtitle>不思进取，思你。</subtitle>
+  <subtitle>不想当程序猿的程序猿不是好程序猿。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
