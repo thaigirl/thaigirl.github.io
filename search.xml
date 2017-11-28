@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[jdk]]></title>
+    <title><![CDATA[Linux下安装SunJDK]]></title>
     <url>%2F2017%2F11%2F28%2Fjdk%2F</url>
     <content type="text"><![CDATA[hhahahahhahaha]]></content>
+      <categories>
+        <category>java</category>
+        <category>linux</category>
+      </categories>
       <tags>
         <tag>java</tag>
       </tags>
