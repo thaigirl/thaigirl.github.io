@@ -3,7 +3,17 @@
 
     <sitemap>
         <loc>https://thaigirl.github.io/post-sitemap.xml</loc>
-        <lastmod>2017-09-28T13:48:51.000Z</lastmod>
+        <lastmod>2017-11-28T12:51:27.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://thaigirl.github.io/page-sitemap.xml</loc>
+        <lastmod>2017-11-28T12:00:33.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://thaigirl.github.io/tag-sitemap.xml</loc>
+        <lastmod>2017-11-28T12:51:27.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>
