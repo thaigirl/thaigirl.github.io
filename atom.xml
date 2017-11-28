@@ -5,9 +5,9 @@
   <subtitle>不想当程序猿的程序猿不是好程序猿。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://thaigirl.github.io/"/>
   <updated>2017-09-28T13:48:51.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://thaigirl.github.io/</id>
   
   <author>
     <name>看见我的影子没</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/09/28/hello-world/"/>
-    <id>http://yoursite.com/2017/09/28/hello-world/</id>
+    <link href="https://thaigirl.github.io/2017/09/28/hello-world/"/>
+    <id>https://thaigirl.github.io/2017/09/28/hello-world/</id>
     <published>2017-09-28T13:48:51.000Z</published>
     <updated>2017-09-28T13:48:51.000Z</updated>
     
