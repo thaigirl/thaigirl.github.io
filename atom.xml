@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thaigirl.github.io/"/>
-  <updated>2017-12-02T09:45:11.000Z</updated>
+  <updated>2017-12-04T07:40:08.000Z</updated>
   <id>https://thaigirl.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>No space left on device Linux系统磁盘占满解决方法</title>
+    <link href="https://thaigirl.github.io/2017/12/04/No%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1/"/>
+    <id>https://thaigirl.github.io/2017/12/04/No space left on device Linux系统磁盘空间占满/</id>
+    <published>2017-12-04T07:39:35.000Z</published>
+    <updated>2017-12-04T07:40:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。</p><hr><h5 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h5><blockquote><p><em>1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式)</em></p><p>文件系统 容量 已用 可用 已用% 挂载点</p><p>Filesystem            Size  Used Avail Use% Mounted on<br>tmpfs                 936M     0  936M   0% /dev/shm</p><p>/dev/xvda1            477M   63M  389M  14% /boot<br>/VolGroup-lv_home144G   53G   83G  100% /home</p><p>2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h5&gt;&lt;p&gt;今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://thaigirl.github.io/tags/linux/"/>
+    
+      <category term="Jenkins" scheme="https://thaigirl.github.io/tags/Jenkins/"/>
+    
+  </entry>
   
   <entry>
     <title>Jenkins环境搭建</title>

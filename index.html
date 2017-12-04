@@ -318,6 +318,145 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thaigirl.github.io/2017/12/04/No space left on device Linux系统磁盘空间占满/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="看见我的影子没">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="好饿啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/04/No space left on device Linux系统磁盘空间占满/" itemprop="url">No space left on device Linux系统磁盘占满解决方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T15:39:35+08:00">
+                2017-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/04/No space left on device Linux系统磁盘空间占满/" class="leancloud_visitors" data-flag-title="No space left on device Linux系统磁盘占满解决方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。</p>
+<hr>
+<h5 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h5><blockquote>
+<p><em>1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式)</em></p>
+<p>文件系统 容量 已用 可用 已用% 挂载点</p>
+<p>Filesystem            Size  Used Avail Use% Mounted on<br>tmpfs                 936M     0  936M   0% /dev/shm</p>
+<p>/dev/xvda1            477M   63M  389M  14% /boot<br>/VolGroup-lv_home144G   53G   83G  100% /home</p>
+<p>2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://thaigirl.github.io/2017/11/30/Jenkins环境搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -634,7 +773,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
