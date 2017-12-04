@@ -4,9 +4,11 @@
     <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
     <url>%2F2017%2F12%2F04%2FNo%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1%2F</url>
     <content type="text"><![CDATA[前言今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。 问题排查 1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式) 文件系统 容量 已用 可用 已用% 挂载点 Filesystem Size Used Avail Use% Mounted ontmpfs 936M 0 936M 0% /dev/shm /dev/xvda1 477M 63M 389M 14% /boot/VolGroup-lv_home144G 53G 83G 100% /home 2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
       <tags>
         <tag>linux</tag>
-        <tag>Jenkins</tag>
       </tags>
   </entry>
   <entry>
