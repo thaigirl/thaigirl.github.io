@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
+      <title><![CDATA[java文件上传getParts()]]></title>
       <url>/2017/12/06/java%E4%BD%BF%E7%94%A8getParts()%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
       <content type="html"><![CDATA[<h5 id="一-利用-getPart-和getParts-函数上传文件"><a href="#一-利用-getPart-和getParts-函数上传文件" class="headerlink" title="一.利用 getPart()和getParts()函数上传文件"></a>一.利用 getPart()和getParts()函数上传文件</h5><blockquote>
 <p>在Servlet3.0中新增了getPart()和getParts()函数用来处理上传文件，getPart()用于上传单文件，getParts()用于上传多个文件。</p>
