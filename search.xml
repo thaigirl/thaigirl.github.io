@@ -1,28 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
-    <url>%2F2017%2F12%2F04%2FNo%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1%2F</url>
-    <content type="text"><![CDATA[前言今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。 问题排查 1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式) 文件系统 容量 已用 可用 已用% 挂载点 Filesystem Size Used Avail Use% Mounted ontmpfs 936M 0 936M 0% /dev/shm /dev/xvda1 477M 63M 389M 14% /boot/VolGroup-lv_home144G 53G 83G 100% /home 2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Jenkins环境搭建]]></title>
-    <url>%2F2017%2F11%2F30%2FJenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[环境准备(linux)1.jkd1.5以上,省略环境配置2.maven及环境配置(maven3.5版本以上不兼容)3.Git安装 (1)安装依赖:1sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker (2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令：123456wget https://github.com/git/git/archive/v2.3.0.zipunzip v2.3.0 -d git #参数-d 后边的是解压到的目录cd git #进入解压后的目录将其安装在“/usr/local/git”目录下,命令如下：make prefix=/usr/local/git allsudo make prefix=/usr/local/git install (3)git配置1234sudo vi/etc/profile #编辑profile文件 export PATH=/usr/local/git/bin:$PATH #在最后面加上source /etc/profile #命令使其生效git –version #检验Git是否安装成功 Jenkins安装1.下载最新版本的jenkins(一个.war文件),jenkins官网地址:http://jenkins-ci.org/ 2.下载tomcat(推荐使用tomcat7或更低，高于此版本会出现兼容性问题) 3.将jenkins.war文件放入tomcat的webapps下面 4.jenkins环境配置 1234(1)vi /etc/profile #编辑profile文件 export JENKINS_HOME=/opt/tomcat7/webapps/Jenkins #在最后面加上,地址更换成实际jenkins地址 source /etc/profile #使其生效(2)启动tomcat,成功后访问地址http://XXXX:8088(端口)/jenkins/,会提示输入密码,密码位置也会告诉你,直接copy过来输入就ok了 环境搭建到此结束，如何构建一个maven项目？如何进行版本回滚？如何构建前端项目？]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F09%2F28%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
+      <url>/2017/12/06/java%E4%BD%BF%E7%94%A8getParts()%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+      <content type="html"><![CDATA[<h5 id="一-利用-getPart-和getParts-函数上传文件"><a href="#一-利用-getPart-和getParts-函数上传文件" class="headerlink" title="一.利用 getPart()和getParts()函数上传文件"></a>一.利用 getPart()和getParts()函数上传文件</h5><blockquote>
+<p>在Servlet3.0中新增了getPart()和getParts()函数用来处理上传文件，getPart()用于上传单文件，getParts()用于上传多个文件。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public void upload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException&#123;</div><div class="line">		    response.setContentType(&quot;textml;charset=UTF-8&quot;);</div><div class="line">	        request.setCharacterEncoding(&quot;UTF-8&quot;);</div><div class="line">	        Collection&lt;Part&gt; parts = request.getParts();//获取上传的所有文件</div><div class="line">	        //Part part = request.getPart(&quot;filename&quot;);//获取上传的单个文件</div><div class="line">	        if (parts.size() == 0) &#123;</div><div class="line">				return;</div><div class="line">			&#125;</div><div class="line">	        for (Part part : parts) &#123;</div><div class="line">	        	// 文件类型限制</div><div class="line">		        String[] allowedType = &#123; &quot;image/bmp&quot;, &quot;image/gif&quot;, &quot;image/jpeg&quot;, &quot;image/png&quot; &#125;;</div><div class="line">		        boolean allowed = Arrays.asList(allowedType).contains(part.getContentType());</div><div class="line">		        if (!allowed) &#123;</div><div class="line">		            response.getWriter().write(&quot;error|不支持的类型&quot;);</div><div class="line">		            return;</div><div class="line">		        &#125;</div><div class="line">		        // 图片大小限制</div><div class="line">		        if (part.getSize() &gt; 5 * 1024 * 1024) &#123;</div><div class="line">		            response.getWriter().write(&quot;error|图片大小不能超过5M&quot;);</div><div class="line">		            return;</div><div class="line">		        &#125;</div><div class="line">		        // 包含原始文件名的字符串</div><div class="line">		        String fi = part.getHeader(&quot;content-disposition&quot;);</div><div class="line">		        // 提取文件拓展名</div><div class="line">		        String fileNameExtension = fi.substring(fi.indexOf(&quot;.&quot;), fi.length() - 1);</div><div class="line">		        // 生成实际存储的真实文件名</div><div class="line">		        String realName = UUID.randomUUID().toString() + fileNameExtension;</div><div class="line">		        // 图片存放的真实路径</div><div class="line">		        /*String realPath = request.getServletContext().getRealPath(&quot;/upload&quot;) + &quot;/&quot; + realName;*/</div><div class="line">		        /* part.getInputStream();</div><div class="line">		        // 将文件写入指定路径下</div><div class="line">		        part.write(realPath);*/</div><div class="line">		        // 返回图片的URL地址</div><div class="line">		        response.getWriter().write(ossConfig.getReturnUrl() + realName);</div><div class="line">			&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h5 id="二-利用MultipartFile对象上传文件"><a href="#二-利用MultipartFile对象上传文件" class="headerlink" title="二.利用MultipartFile对象上传文件"></a>二.利用MultipartFile对象上传文件</h5><p>示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value=&quot;/uploadImg&quot;, method=RequestMethod.POST)  </div><div class="line">	public void  upload(@RequestParam(&quot;file&quot;) MultipartFile myfile, HttpServletRequest request, HttpServletResponse response) throws Exception</div><div class="line">	    &#123;   </div><div class="line">	        Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line">	        //获取upload文件夹实际路径</div><div class="line">	        String realPath = request.getSession().getServletContext().getRealPath(&quot;/upload&quot;);</div><div class="line">	        response.setContentType(&quot;text/plain; charset=UTF-8&quot;);</div><div class="line">	        //上传文件的原名(即上传前的文件名字)</div><div class="line">	        String originalFilename = null;</div><div class="line">	        //上传多个文件时,前台表单中的所有&lt;input type=&quot;file&quot;/&gt;的name都应该是myfiles,否则参数里的myfiles无法获取到所有上传的文件</div><div class="line">//	        for(MultipartFile myfile : myfiles)&#123;</div><div class="line">	            if(myfile.isEmpty())&#123;</div><div class="line">	                map.put(&quot;result&quot;, &quot;请选择文件后上传&quot;);</div><div class="line">	            &#125;else&#123;</div><div class="line">	              originalFilename = myfile.getOriginalFilename();</div><div class="line">	              try &#123;</div><div class="line">	                    //这里不必处理IO流关闭的问题,因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉</div><div class="line">	                    //此处也可以使用Spring提供的MultipartFile.transferTo(File dest)方法实现文件的上传</div><div class="line">	                    FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, originalFilename));</div><div class="line">	                	String path = request.getContextPath();</div><div class="line">	                	String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;</div><div class="line">	                    map.put(&quot;result&quot;, basePath+&quot;/upload&quot;+System.getProperty(&quot;file.separator&quot;) + originalFilename);</div><div class="line">	                    map.put(&quot;filename&quot;, originalFilename);</div><div class="line">	            		map.put(&quot;success&quot;, &quot;true&quot;);</div><div class="line">	                &#125; catch (IOException e) &#123;</div><div class="line">	                    map.put(&quot;result&quot;, &quot;文件上传失败，请重试！！&quot;);</div><div class="line">	                    map.put(&quot;success&quot;, &quot;false&quot;);</div><div class="line">	                &#125;</div><div class="line">	            &#125;</div><div class="line">//	        &#125;</div><div class="line">			String json = JsonDataUtil.toJsonStr(map);</div><div class="line">	        response.setContentType(&quot;text/html&quot;);</div><div class="line">	        response.getWriter().write(json);</div><div class="line">	        response.getWriter().flush();</div><div class="line">	        response.getWriter().close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> io </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
+      <url>/2017/12/04/No%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1/</url>
+      <content type="html"><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。</p>
+<hr>
+<h5 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h5><blockquote>
+<p><em>1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式)</em></p>
+<p>文件系统 容量 已用 可用 已用% 挂载点</p>
+<p>Filesystem            Size  Used Avail Use% Mounted on<br>tmpfs                 936M     0  936M   0% /dev/shm</p>
+<p>/dev/xvda1            477M   63M  389M  14% /boot<br>/VolGroup-lv_home144G   53G   83G  100% /home</p>
+<p>2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Jenkins环境搭建]]></title>
+      <url>/2017/11/30/Jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<h3 id="环境准备-linux"><a href="#环境准备-linux" class="headerlink" title="环境准备(linux)"></a>环境准备(linux)</h3><p>1.jkd1.5以上,省略环境配置<br>2.maven及环境配置(maven3.5版本以上不兼容)<br>3.Git安装</p>
+<h5 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="(1)安装依赖:"></a>(1)安装依赖:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</div></pre></td></tr></table></figure>
+<h5 id="2-下载git-选择一个目录（或创建一个目录），存放下载的git-下载命令："><a href="#2-下载git-选择一个目录（或创建一个目录），存放下载的git-下载命令：" class="headerlink" title="(2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令："></a>(2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/git/git/archive/v2.3.0.zip</div><div class="line">unzip v2.3.0 -d git #参数-d 后边的是解压到的目录</div><div class="line">cd git #进入解压后的目录</div><div class="line">将其安装在“/usr/local/git”目录下,命令如下：</div><div class="line">make prefix=/usr/local/git all</div><div class="line">sudo make prefix=/usr/local/git install</div></pre></td></tr></table></figure>
+<h5 id="3-git配置"><a href="#3-git配置" class="headerlink" title="(3)git配置"></a>(3)git配置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo vi/etc/profile #编辑profile文件       </div><div class="line">export PATH=/usr/local/git/bin:$PATH #在最后面加上</div><div class="line">source /etc/profile #命令使其生效</div><div class="line">git –version #检验Git是否安装成功</div></pre></td></tr></table></figure>
+<h3 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h3><p>1.下载最新版本的jenkins(一个.war文件),jenkins官网地址:<a href="http://jenkins-ci.org/" target="_blank" rel="external">http://jenkins-ci.org/</a></p>
+<p>2.下载tomcat(推荐使用tomcat7或更低，高于此版本会出现兼容性问题)</p>
+<p>3.将jenkins.war文件放入tomcat的webapps下面</p>
+<p>4.jenkins环境配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(1)vi /etc/profile  #编辑profile文件</div><div class="line">   export JENKINS_HOME=/opt/tomcat7/webapps/Jenkins  #在最后面加上,地址更换成实际jenkins地址</div><div class="line">   source /etc/profile  #使其生效</div><div class="line">(2)启动tomcat,成功后访问地址http://XXXX:8088(端口)/jenkins/,会提示输入密码,密码位置也会告诉你,直接copy过来输入就ok了</div></pre></td></tr></table></figure>
+<p>环境搭建到此结束，如何构建一个maven项目？如何进行版本回滚？如何构建前端项目？</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> Jenkins </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2017/09/28/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
 </search>
