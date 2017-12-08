@@ -1,105 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title><![CDATA[java文件上传getParts()]]></title>
-      <url>/2017/12/06/java%E4%BD%BF%E7%94%A8getParts()%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-      <content type="html"><![CDATA[<h5 id="一-利用-getPart-和getParts-函数上传文件"><a href="#一-利用-getPart-和getParts-函数上传文件" class="headerlink" title="一.利用 getPart()和getParts()函数上传文件"></a>一.利用 getPart()和getParts()函数上传文件</h5><blockquote>
-<p>在Servlet3.0中新增了getPart()和getParts()函数用来处理上传文件，getPart()用于上传单文件，getParts()用于上传多个文件。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public void upload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException&#123;</div><div class="line">		    response.setContentType(&quot;textml;charset=UTF-8&quot;);</div><div class="line">	        request.setCharacterEncoding(&quot;UTF-8&quot;);</div><div class="line">	        Collection&lt;Part&gt; parts = request.getParts();//获取上传的所有文件</div><div class="line">	        //Part part = request.getPart(&quot;filename&quot;);//获取上传的单个文件</div><div class="line">	        if (parts.size() == 0) &#123;</div><div class="line">				return;</div><div class="line">			&#125;</div><div class="line">	        for (Part part : parts) &#123;</div><div class="line">	        	// 文件类型限制</div><div class="line">		        String[] allowedType = &#123; &quot;image/bmp&quot;, &quot;image/gif&quot;, &quot;image/jpeg&quot;, &quot;image/png&quot; &#125;;</div><div class="line">		        boolean allowed = Arrays.asList(allowedType).contains(part.getContentType());</div><div class="line">		        if (!allowed) &#123;</div><div class="line">		            response.getWriter().write(&quot;error|不支持的类型&quot;);</div><div class="line">		            return;</div><div class="line">		        &#125;</div><div class="line">		        // 图片大小限制</div><div class="line">		        if (part.getSize() &gt; 5 * 1024 * 1024) &#123;</div><div class="line">		            response.getWriter().write(&quot;error|图片大小不能超过5M&quot;);</div><div class="line">		            return;</div><div class="line">		        &#125;</div><div class="line">		        // 包含原始文件名的字符串</div><div class="line">		        String fi = part.getHeader(&quot;content-disposition&quot;);</div><div class="line">		        // 提取文件拓展名</div><div class="line">		        String fileNameExtension = fi.substring(fi.indexOf(&quot;.&quot;), fi.length() - 1);</div><div class="line">		        // 生成实际存储的真实文件名</div><div class="line">		        String realName = UUID.randomUUID().toString() + fileNameExtension;</div><div class="line">		        // 图片存放的真实路径</div><div class="line">		        /*String realPath = request.getServletContext().getRealPath(&quot;/upload&quot;) + &quot;/&quot; + realName;*/</div><div class="line">		        /* part.getInputStream();</div><div class="line">		        // 将文件写入指定路径下</div><div class="line">		        part.write(realPath);*/</div><div class="line">		        // 返回图片的URL地址</div><div class="line">		        response.getWriter().write(ossConfig.getReturnUrl() + realName);</div><div class="line">			&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h5 id="二-利用MultipartFile对象上传文件"><a href="#二-利用MultipartFile对象上传文件" class="headerlink" title="二.利用MultipartFile对象上传文件"></a>二.利用MultipartFile对象上传文件</h5><p>示例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value=&quot;/uploadImg&quot;, method=RequestMethod.POST)  </div><div class="line">	public void  upload(@RequestParam(&quot;file&quot;) MultipartFile myfile, HttpServletRequest request, HttpServletResponse response) throws Exception</div><div class="line">	    &#123;   </div><div class="line">	        Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line">	        //获取upload文件夹实际路径</div><div class="line">	        String realPath = request.getSession().getServletContext().getRealPath(&quot;/upload&quot;);</div><div class="line">	        response.setContentType(&quot;text/plain; charset=UTF-8&quot;);</div><div class="line">	        //上传文件的原名(即上传前的文件名字)</div><div class="line">	        String originalFilename = null;</div><div class="line">	        //上传多个文件时,前台表单中的所有&lt;input type=&quot;file&quot;/&gt;的name都应该是myfiles,否则参数里的myfiles无法获取到所有上传的文件</div><div class="line">//	        for(MultipartFile myfile : myfiles)&#123;</div><div class="line">	            if(myfile.isEmpty())&#123;</div><div class="line">	                map.put(&quot;result&quot;, &quot;请选择文件后上传&quot;);</div><div class="line">	            &#125;else&#123;</div><div class="line">	              originalFilename = myfile.getOriginalFilename();</div><div class="line">	              try &#123;</div><div class="line">	                    //这里不必处理IO流关闭的问题,因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉</div><div class="line">	                    //此处也可以使用Spring提供的MultipartFile.transferTo(File dest)方法实现文件的上传</div><div class="line">	                    FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, originalFilename));</div><div class="line">	                	String path = request.getContextPath();</div><div class="line">	                	String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;</div><div class="line">	                    map.put(&quot;result&quot;, basePath+&quot;/upload&quot;+System.getProperty(&quot;file.separator&quot;) + originalFilename);</div><div class="line">	                    map.put(&quot;filename&quot;, originalFilename);</div><div class="line">	            		map.put(&quot;success&quot;, &quot;true&quot;);</div><div class="line">	                &#125; catch (IOException e) &#123;</div><div class="line">	                    map.put(&quot;result&quot;, &quot;文件上传失败，请重试！！&quot;);</div><div class="line">	                    map.put(&quot;success&quot;, &quot;false&quot;);</div><div class="line">	                &#125;</div><div class="line">	            &#125;</div><div class="line">//	        &#125;</div><div class="line">			String json = JsonDataUtil.toJsonStr(map);</div><div class="line">	        response.setContentType(&quot;text/html&quot;);</div><div class="line">	        response.getWriter().write(json);</div><div class="line">	        response.getWriter().flush();</div><div class="line">	        response.getWriter().close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> io </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
-      <url>/2017/12/04/No%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1/</url>
-      <content type="html"><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。</p>
-<hr>
-<h5 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h5><blockquote>
-<p><em>1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式)</em></p>
-<p>文件系统 容量 已用 可用 已用% 挂载点</p>
-<p>Filesystem            Size  Used Avail Use% Mounted on<br>tmpfs                 936M     0  936M   0% /dev/shm</p>
-<p>/dev/xvda1            477M   63M  389M  14% /boot<br>/VolGroup-lv_home144G   53G   83G  100% /home</p>
-<p>2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Jenkins环境搭建]]></title>
-      <url>/2017/11/30/Jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
-      <content type="html"><![CDATA[<h3 id="环境准备-linux"><a href="#环境准备-linux" class="headerlink" title="环境准备(linux)"></a>环境准备(linux)</h3><p>1.jkd1.5以上,省略环境配置<br>2.maven及环境配置(maven3.5版本以上不兼容)<br>3.Git安装</p>
-<h5 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="(1)安装依赖:"></a>(1)安装依赖:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</div></pre></td></tr></table></figure>
-<h5 id="2-下载git-选择一个目录（或创建一个目录），存放下载的git-下载命令："><a href="#2-下载git-选择一个目录（或创建一个目录），存放下载的git-下载命令：" class="headerlink" title="(2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令："></a>(2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/git/git/archive/v2.3.0.zip</div><div class="line">unzip v2.3.0 -d git #参数-d 后边的是解压到的目录</div><div class="line">cd git #进入解压后的目录</div><div class="line">将其安装在“/usr/local/git”目录下,命令如下：</div><div class="line">make prefix=/usr/local/git all</div><div class="line">sudo make prefix=/usr/local/git install</div></pre></td></tr></table></figure>
-<h5 id="3-git配置"><a href="#3-git配置" class="headerlink" title="(3)git配置"></a>(3)git配置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo vi/etc/profile #编辑profile文件       </div><div class="line">export PATH=/usr/local/git/bin:$PATH #在最后面加上</div><div class="line">source /etc/profile #命令使其生效</div><div class="line">git –version #检验Git是否安装成功</div></pre></td></tr></table></figure>
-<h3 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h3><p>1.下载最新版本的jenkins(一个.war文件),jenkins官网地址:<a href="http://jenkins-ci.org/" target="_blank" rel="external">http://jenkins-ci.org/</a></p>
-<p>2.下载tomcat(推荐使用tomcat7或更低，高于此版本会出现兼容性问题)</p>
-<p>3.将jenkins.war文件放入tomcat的webapps下面</p>
-<p>4.jenkins环境配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(1)vi /etc/profile  #编辑profile文件</div><div class="line">   export JENKINS_HOME=/opt/tomcat7/webapps/Jenkins  #在最后面加上,地址更换成实际jenkins地址</div><div class="line">   source /etc/profile  #使其生效</div><div class="line">(2)启动tomcat,成功后访问地址http://XXXX:8088(端口)/jenkins/,会提示输入密码,密码位置也会告诉你,直接copy过来输入就ok了</div></pre></td></tr></table></figure>
-<p>环境搭建到此结束，如何构建一个maven项目？如何进行版本回滚？如何构建前端项目？</p>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> Jenkins </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/09/28/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        
-    </entry>
-    
-  
-  
+<search>
+  <entry>
+    <title><![CDATA[Spring嵌套事物理解]]></title>
+    <url>%2F2017%2F12%2F08%2FSpring%E5%B5%8C%E5%A5%97%E4%BA%8B%E7%89%A9%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[事物的基本原理Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行： 12345获取连接 Connection con = DriverManager.getConnection()开启事务con.setAutoCommit(true/false);执行CRUD提交事务/回滚事务 con.commit() / con.rollback();关闭连接 conn.close(); 使用Spring的事务管理功能后，我们可以不再写步骤 2 和 4 的代码，而是由Spirng 自动完成。 那么Spring是如何在我们书写的 CRUD 之前和之后开启事务和关闭事务的呢？解决这个问题，也就可以从整体上理解Spring的事务管理实现原理了。下面简单地介绍下，注解方式为例子配置文件开启注解驱动，在相关的类和方法上通过注解@Transactional标识。spring 在启动的时候会去解析生成相关的bean，这时候会查看拥有相关注解的类和方法，并且为这些类和方法生成代理，并根据@Transaction的相关参数进行相关配置注入，这样就在代理中为我们把相关的事务处理掉了（开启正常提交事务，异常回滚事务）。真正的数据库层的事务提交和回滚是通过binlog或者redo log实现的。 Spring事物的传播属性所谓spring事务的传播属性，就是定义在存在多个事务同时存在的时候，spring应该如何处理这些事务的行为。这些属性在TransactionDefinition中定义，具体常量的解释见下表： 常量 解释 PROPAGATION_REQUIRED 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择，也是 Spring 默认的事务的传播。 PROPAGATION_REQUIRES_NEW 新建事务，如果当前存在事务，把当前事务挂起。新建的事务将和被挂起的事务没有任何关系，是两个独立的事务，外层事务失败回滚之后，不能回滚内层事务执行的结果，内层事务失败抛出异常，外层事务捕获，也可以不处理回滚操作 PROPAGATION_SUPPORTS 支持当前事务，如果当前没有事务，就以非事务方式执行。 PROPAGATION_MANDATORY 支持当前事物，如果当前没有事物，就跑出异常 PROPAGATION_NOT_SUPPORTED 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。 PROPAGATION_NEVER 以非事务方式执行，如果当前存在事务，则抛出异常。 PROPAGATION_NESTED 如果一个活动的事务存在，则运行在一个嵌套的事务中。如果没有活动事务，则按REQUIRED属性执行。它使用了一个单独的事务，这个事务拥有多个可以回滚的保存点。内部事务的回滚不会对外部事务造成影响。它只对DataSourceTransactionManager事务管理器起效。 数据库的隔离级别 隔离级别 隔离级别的值 导致的问题 Read-Uncommitted 0 导致脏读 Read-Committed 1 避免脏读，允许不可重复读和幻读 Repeatable-Read 2 避免脏读，不可重复读，允许幻读 Serializable 3 串行化读，事务只能一个一个执行，避免了脏读、不可重复读、幻读。效率慢，使用时慎重 ######脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。 ######不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。 ######幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。 ######总结： ######隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。 ######大多数的数据库默认隔离级别为 Read Commited，比如 SqlServer、Oracle ######少数数据库默认隔离级别为：Repeatable Read 比如： MySQL InnoDB Spring中的隔离级别 常量 解释 ISOLATION_DEFAULT 这是个 PlatfromTransactionManager 默认的隔离级别，使用数据库默认的事务隔离级别。另外四个与 JDBC 的隔离级别相对应。 ISOLATION_READ_UNCOMMITTED 这是事务最低的隔离级别，它充许另外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。 ISOLATION_READ_COMMITTED 保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。 ISOLATION_REPEATABLE_READ 这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。 ISOLATION_SERIALIZABLE 这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。 事物的嵌套通过上面的理论知识的铺垫，我们大致知道了数据库事务和spring事务的一些属性和特点，接下来我们通过分析一些嵌套事务的场景，来深入理解spring事务传播的机制。假设外层事务 Service A 的 Method A() 调用 内层Service B 的 Method B() 1234567/** * 事务属性配置为 PROPAGATION_REQUIRED */ void methodA() &#123; // 调用 ServiceB 的方法 ServiceB.methodB(); &#125; 如果ServiceB.methodB() 的事务级别定义为PROPAGATION_REQUIRED，那么执行 ServiceA.methodA() 的时候spring已经起了事务，这时调用 ServiceB.methodB()，ServiceB.methodB() 看到自己已经运行在 ServiceA.methodA() 的事务内部，就不再起新的事务。假如 ServiceB.methodB() 运行的时候发现自己没有在事务中，他就会为自己分配一个事务。这样，在 ServiceA.methodA() 或者在 ServiceB.methodB() 内的任何地方出现异常，事务都会被回滚。PROPAGATION_REQUIRES_NEW比如我们设计ServiceA.methodA() 的事务级别为 PROPAGATION_REQUIRED，ServiceB.methodB() 的事务级别为 PROPAGATION_REQUIRES_NEW。那么当执行到 ServiceB.methodB() 的时候，ServiceA.methodA() 所在的事务就会挂起，ServiceB.methodB() 会起一个新的事务，等待 ServiceB.methodB() 的事务完成以后，它才继续执行。他与PROPAGATION_REQUIRED 的事务区别在于事务的回滚程度了。因为 ServiceB.methodB() 是新起一个事务，那么就是存在两个不同的事务。如果 ServiceB.methodB() 已经提交，那么 ServiceA.methodA() 失败回滚，ServiceB.methodB() 是不会回滚的。如果 ServiceB.methodB() 失败回滚，如果他抛出的异常被 ServiceA.methodA() 捕获，ServiceA.methodA() 事务仍然可能提交(主要看B抛出的异常是不是A会回滚的异常)。PROPAGATION_SUPPORTS假设ServiceB.methodB() 的事务级别为 PROPAGATION_SUPPORTS，那么当执行到ServiceB.methodB()时，如果发现ServiceA.methodA()已经开启了一个事务，则加入当前的事务，如果发现ServiceA.methodA()没有开启事务，则自己也不开启事务。这种时候，内部方法的事务性完全依赖于最外层的事务。PROPAGATION_NESTED现在的情况就变得比较复杂了, ServiceB.methodB() 的事务属性被配置为 PROPAGATION_NESTED, 此时两者之间又将如何协作呢? ServiceB.methodB 如果 rollback, 那么内部事务(即 ServiceB.methodB) 将回滚到它执行前的 SavePoint 而外部事务(即 ServiceA.methodA) 可以有以下两种处理方式:A、捕获异常，执行异常分支逻辑 1234567void methodA() &#123; try &#123; ServiceB.methodB(); &#125; catch (SomeException) &#123; // 执行其他业务, 如 ServiceC.methodC(); &#125; &#125; 这种方式也是嵌套事务最有价值的地方, 它起到了分支执行的效果, 如果 ServiceB.methodB 失败, 那么执行 ServiceC.methodC(), 而 ServiceB.methodB 已经回滚到它执行之前的 SavePoint, 所以不会产生脏数据(相当于此方法从未执行过), 这种特性可以用在某些特殊的业务中, 而 PROPAGATION_REQUIRED 和 PROPAGATION_REQUIRES_NEW 都没有办法做到这一点。B、 外部事务回滚/提交 代码不做任何修改, 那么如果内部事务(ServiceB.methodB) rollback, 那么首先 ServiceB.methodB 回滚到它执行之前的 SavePoint(在任何情况下都会如此), 外部事务(即 ServiceA.methodA) 将根据具体的配置决定自己是 commit 还是 rollback]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java文件上传getParts()]]></title>
+    <url>%2F2017%2F12%2F06%2Fjava%E4%BD%BF%E7%94%A8getParts()%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%2F</url>
+    <content type="text"><![CDATA[一.利用 getPart()和getParts()函数上传文件 在Servlet3.0中新增了getPart()和getParts()函数用来处理上传文件，getPart()用于上传单文件，getParts()用于上传多个文件。 123456789101112131415161718192021222324252627282930313233343536public void upload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException&#123; response.setContentType(&quot;textml;charset=UTF-8&quot;); request.setCharacterEncoding(&quot;UTF-8&quot;); Collection&lt;Part&gt; parts = request.getParts();//获取上传的所有文件 //Part part = request.getPart(&quot;filename&quot;);//获取上传的单个文件 if (parts.size() == 0) &#123; return; &#125; for (Part part : parts) &#123; // 文件类型限制 String[] allowedType = &#123; &quot;image/bmp&quot;, &quot;image/gif&quot;, &quot;image/jpeg&quot;, &quot;image/png&quot; &#125;; boolean allowed = Arrays.asList(allowedType).contains(part.getContentType()); if (!allowed) &#123; response.getWriter().write(&quot;error|不支持的类型&quot;); return; &#125; // 图片大小限制 if (part.getSize() &gt; 5 * 1024 * 1024) &#123; response.getWriter().write(&quot;error|图片大小不能超过5M&quot;); return; &#125; // 包含原始文件名的字符串 String fi = part.getHeader(&quot;content-disposition&quot;); // 提取文件拓展名 String fileNameExtension = fi.substring(fi.indexOf(&quot;.&quot;), fi.length() - 1); // 生成实际存储的真实文件名 String realName = UUID.randomUUID().toString() + fileNameExtension; // 图片存放的真实路径 /*String realPath = request.getServletContext().getRealPath(&quot;/upload&quot;) + &quot;/&quot; + realName;*/ /* part.getInputStream(); // 将文件写入指定路径下 part.write(realPath);*/ // 返回图片的URL地址 response.getWriter().write(ossConfig.getReturnUrl() + realName); &#125; &#125; 二.利用MultipartFile对象上传文件示例: 123456789101112131415161718192021222324252627282930313233343536@RequestMapping(value=&quot;/uploadImg&quot;, method=RequestMethod.POST) public void upload(@RequestParam(&quot;file&quot;) MultipartFile myfile, HttpServletRequest request, HttpServletResponse response) throws Exception &#123; Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;(); //获取upload文件夹实际路径 String realPath = request.getSession().getServletContext().getRealPath(&quot;/upload&quot;); response.setContentType(&quot;text/plain; charset=UTF-8&quot;); //上传文件的原名(即上传前的文件名字) String originalFilename = null; //上传多个文件时,前台表单中的所有&lt;input type=&quot;file&quot;/&gt;的name都应该是myfiles,否则参数里的myfiles无法获取到所有上传的文件// for(MultipartFile myfile : myfiles)&#123; if(myfile.isEmpty())&#123; map.put(&quot;result&quot;, &quot;请选择文件后上传&quot;); &#125;else&#123; originalFilename = myfile.getOriginalFilename(); try &#123; //这里不必处理IO流关闭的问题,因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉 //此处也可以使用Spring提供的MultipartFile.transferTo(File dest)方法实现文件的上传 FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, originalFilename)); String path = request.getContextPath(); String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;; map.put(&quot;result&quot;, basePath+&quot;/upload&quot;+System.getProperty(&quot;file.separator&quot;) + originalFilename); map.put(&quot;filename&quot;, originalFilename); map.put(&quot;success&quot;, &quot;true&quot;); &#125; catch (IOException e) &#123; map.put(&quot;result&quot;, &quot;文件上传失败，请重试！！&quot;); map.put(&quot;success&quot;, &quot;false&quot;); &#125; &#125;// &#125; String json = JsonDataUtil.toJsonStr(map); response.setContentType(&quot;text/html&quot;); response.getWriter().write(json); response.getWriter().flush(); response.getWriter().close(); &#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>io</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[No space left on device Linux系统磁盘占满解决方法]]></title>
+    <url>%2F2017%2F12%2F04%2FNo%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1%2F</url>
+    <content type="text"><![CDATA[前言今天在部署测试环境时一直失败，提示No space left on device，原因是磁盘满了。网上查了下顺便分享下解决方案。 问题排查 1.首先使用df -h 命令查看磁盘剩余空间(会显示如下格式) 文件系统 容量 已用 可用 已用% 挂载点 Filesystem Size Used Avail Use% Mounted ontmpfs 936M 0 936M 0% /dev/shm /dev/xvda1 477M 63M 389M 14% /boot/VolGroup-lv_home144G 53G 83G 100% /home 2.发现home文件夹已经被占满了，进入home文件夹使用sudo du -cks * | sort -rn | head -n 10 命令查看占用空间最多的前10个，然后可以删除一些没用的文件]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Jenkins环境搭建]]></title>
+    <url>%2F2017%2F11%2F30%2FJenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[环境准备(linux)1.jkd1.5以上,省略环境配置2.maven及环境配置(maven3.5版本以上不兼容)3.Git安装 (1)安装依赖:1sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker (2)下载git,选择一个目录（或创建一个目录），存放下载的git,下载命令：123456wget https://github.com/git/git/archive/v2.3.0.zipunzip v2.3.0 -d git #参数-d 后边的是解压到的目录cd git #进入解压后的目录将其安装在“/usr/local/git”目录下,命令如下：make prefix=/usr/local/git allsudo make prefix=/usr/local/git install (3)git配置1234sudo vi/etc/profile #编辑profile文件 export PATH=/usr/local/git/bin:$PATH #在最后面加上source /etc/profile #命令使其生效git –version #检验Git是否安装成功 Jenkins安装1.下载最新版本的jenkins(一个.war文件),jenkins官网地址:http://jenkins-ci.org/ 2.下载tomcat(推荐使用tomcat7或更低，高于此版本会出现兼容性问题) 3.将jenkins.war文件放入tomcat的webapps下面 4.jenkins环境配置 1234(1)vi /etc/profile #编辑profile文件 export JENKINS_HOME=/opt/tomcat7/webapps/Jenkins #在最后面加上,地址更换成实际jenkins地址 source /etc/profile #使其生效(2)启动tomcat,成功后访问地址http://XXXX:8088(端口)/jenkins/,会提示输入密码,密码位置也会告诉你,直接copy过来输入就ok了 环境搭建到此结束，如何构建一个maven项目？如何进行版本回滚？如何构建前端项目？]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F09%2F28%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
 </search>
