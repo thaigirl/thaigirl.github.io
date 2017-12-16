@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thaigirl.github.io/"/>
-  <updated>2017-12-08T12:17:33.000Z</updated>
+  <updated>2017-12-16T08:31:33.000Z</updated>
   <id>https://thaigirl.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven.test.skip maven打包跳过单元测试</title>
+    <link href="https://thaigirl.github.io/2017/12/12/maven.test.skip%20maven%E6%89%93%E5%8C%85%E8%B7%B3%E8%BF%87%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    <id>https://thaigirl.github.io/2017/12/12/maven.test.skip maven打包跳过单元测试/</id>
+    <published>2017-12-12T08:39:35.000Z</published>
+    <updated>2017-12-16T08:31:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>-DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。</p><p>-Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。</p><p>不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mvn package -Dmaven.test.skip=true   ## 使用maven.test.skip，不但跳过单元测试的运行，也跳过测试代码的编译。</div><div class="line">mvn package -DskipTests ## 跳过单元测试，但是会继续编译；如果没时间修改单元测试的bug，或者单元测试编译错误。</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;-DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。&lt;/p&gt;
+&lt;p&gt;-Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。&lt;/p&gt;
+&lt;p&gt;不执行测试
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://thaigirl.github.io/categories/java/"/>
+    
+    
+      <category term="maven" scheme="https://thaigirl.github.io/tags/maven/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring嵌套事物理解</title>

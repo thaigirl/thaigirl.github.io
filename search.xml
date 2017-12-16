@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[maven.test.skip maven打包跳过单元测试]]></title>
+      <url>/2017/12/12/maven.test.skip%20maven%E6%89%93%E5%8C%85%E8%B7%B3%E8%BF%87%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>-DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。</p>
+<p>-Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。</p>
+<p>不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mvn package -Dmaven.test.skip=true   ## 使用maven.test.skip，不但跳过单元测试的运行，也跳过测试代码的编译。</div><div class="line">mvn package -DskipTests ## 跳过单元测试，但是会继续编译；如果没时间修改单元测试的bug，或者单元测试编译错误。</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> maven </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spring嵌套事物理解]]></title>
       <url>/2017/12/08/Spring%E5%B5%8C%E5%A5%97%E4%BA%8B%E7%89%A9%E7%90%86%E8%A7%A3/</url>
       <content type="html"><![CDATA[<h5 id="事物的基本原理"><a href="#事物的基本原理" class="headerlink" title="事物的基本原理"></a>事物的基本原理</h5><p>Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行：</p>
