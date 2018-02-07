@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thaigirl.github.io/"/>
-  <updated>2017-12-16T08:31:33.000Z</updated>
+  <updated>2018-02-07T03:04:29.000Z</updated>
   <id>https://thaigirl.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://thaigirl.github.io/2018/02/07/try()%7B%7Dcatch()%7B%7D%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90/"/>
+    <id>https://thaigirl.github.io/2018/02/07/try(){}catch(){}自动释放资源/</id>
+    <published>2018-02-07T02:47:46.000Z</published>
+    <updated>2018-02-07T03:04:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: java try(){}catch(){}自动释放资源<br>date: 2018-01-15 14:39:35<br>categories: [java]</p><p>从 Java 7 build 105 版本开始，Java 7 的编译器和运行环境支持新的 try-with-resources 语句，称为 ARM 块(Automatic Resource Management) ，自动资源管理。</p><p>使用try(){}catch(){}效果：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">private static void copyStream(File source, File target) &#123;</div><div class="line">    try (InputStream fis = new FileInputStream(source);</div><div class="line">        OutputStream fos = new FileOutputStream(target))&#123;</div><div class="line">  </div><div class="line">        byte[] buf = new byte[8192];</div><div class="line">  </div><div class="line">        int i;</div><div class="line">        while ((i = fis.read(buf)) != -1) &#123;</div><div class="line">            fos.write(buf, 0, i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    catch (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>在这个例子中，数据流会在 try 执行完毕后自动被关闭，前提是，这些可关闭的资源必须实现 java.lang.AutoCloseable 接口,例如 CloseableHttpClient、InputStream、CloseableHttpResponse等。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;title: java try(){}catch(){}自动释放资源&lt;br&gt;date: 2018-01-15 14:39:35&lt;br&gt;categories: [java]&lt;/p&gt;
+&lt;p&gt;从 Java 7 build 105 版本开始，Java 7 的编译器和运行环境支持新的
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>StringRedisTemplate使用指南</title>
+    <link href="https://thaigirl.github.io/2018/01/04/StringRedisTemplate%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>https://thaigirl.github.io/2018/01/04/StringRedisTemplate使用指南/</id>
+    <published>2018-01-04T06:39:35.000Z</published>
+    <updated>2018-02-07T02:49:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">stringRedisTemplate.opsForValue().set(&quot;test&quot;, &quot;100&quot;,60*10,TimeUnit.SECONDS);//向redis里存入数据和设置缓存时间 </div><div class="line">stringRedisTemplate.boundValueOps(&quot;test&quot;).increment(-1);//value做-1操作</div><div class="line">stringRedisTemplate.boundValueOps(&quot;test&quot;).increment(1);//value +1 </div><div class="line">stringRedisTemplate.opsForValue().get(&quot;test&quot;)//根据key获取缓存中的value</div><div class="line">stringRedisTemplate.getExpire(&quot;test&quot;)//根据key获取过期时间 </div><div class="line">stringRedisTemplate.getExpire(&quot;test&quot;,TimeUnit.SECONDS)//根据key获取过期时间并换算成指定单位 </div><div class="line">stringRedisTemplate.delete(&quot;test&quot;);//根据key删除缓存</div><div class="line">stringRedisTemplate.hasKey(&quot;546545&quot;);//检查key是否存在，返回boolean值 </div><div class="line">stringRedisTemplate.opsForSet().add(&quot;red_123&quot;, &quot;1&quot;,&quot;2&quot;,&quot;3&quot;);//向指定key中存放set集合</div><div class="line">stringRedisTemplate.expire(&quot;red_123&quot;,1000 , TimeUnit.MILLISECONDS);//设置过期时间</div><div class="line">stringRedisTemplate.opsForSet().isMember(&quot;red_123&quot;, &quot;1&quot;)//根据key查看集合中是否存在指定数据</div><div class="line">stringRedisTemplate.opsForSet().members(&quot;red_123&quot;);//根据key获取set集合</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://thaigirl.github.io/categories/java/"/>
+    
+      <category term="springboot" scheme="https://thaigirl.github.io/categories/java/springboot/"/>
+    
+    
+      <category term="redis" scheme="https://thaigirl.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>maven.test.skip maven打包跳过单元测试</title>
@@ -163,33 +212,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>StringRedisTemplate使用指南</title>
-    <link href="https://thaigirl.github.io/2017/01/04/StringRedisTemplate%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
-    <id>https://thaigirl.github.io/2017/01/04/StringRedisTemplate使用指南/</id>
-    <published>2017-01-04T06:39:35.000Z</published>
-    <updated>2018-01-04T06:32:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">stringRedisTemplate.opsForValue().set(&quot;test&quot;, &quot;100&quot;,60*10,TimeUnit.SECONDS);//向redis里存入数据和设置缓存时间 </div><div class="line">stringRedisTemplate.boundValueOps(&quot;test&quot;).increment(-1);//value做-1操作</div><div class="line">stringRedisTemplate.boundValueOps(&quot;test&quot;).increment(1);//value +1 </div><div class="line">stringRedisTemplate.opsForValue().get(&quot;test&quot;)//根据key获取缓存中的value</div><div class="line">stringRedisTemplate.getExpire(&quot;test&quot;)//根据key获取过期时间 </div><div class="line">stringRedisTemplate.getExpire(&quot;test&quot;,TimeUnit.SECONDS)//根据key获取过期时间并换算成指定单位 </div><div class="line">stringRedisTemplate.delete(&quot;test&quot;);//根据key删除缓存</div><div class="line">stringRedisTemplate.hasKey(&quot;546545&quot;);//检查key是否存在，返回boolean值 </div><div class="line">stringRedisTemplate.opsForSet().add(&quot;red_123&quot;, &quot;1&quot;,&quot;2&quot;,&quot;3&quot;);//向指定key中存放set集合</div><div class="line">stringRedisTemplate.expire(&quot;red_123&quot;,1000 , TimeUnit.MILLISECONDS);//设置过期时间</div><div class="line">stringRedisTemplate.opsForSet().isMember(&quot;red_123&quot;, &quot;1&quot;)//根据key查看集合中是否存在指定数据</div><div class="line">stringRedisTemplate.opsForSet().members(&quot;red_123&quot;);//根据key获取set集合</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
-      
-    
-    </summary>
-    
-      <category term="java" scheme="https://thaigirl.github.io/categories/java/"/>
-    
-      <category term="springboot" scheme="https://thaigirl.github.io/categories/java/springboot/"/>
-    
-    
-      <category term="redis" scheme="https://thaigirl.github.io/tags/redis/"/>
     
   </entry>
   
