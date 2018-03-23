@@ -21,6 +21,15 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[linux安装redis]]></title>
+    <url>%2F2017%2F12%2F20%2Flinux%E5%AE%89%E8%A3%85redis%2F</url>
+    <content type="text"><![CDATA[1.下载源码，解压后编译源码1234wget http://download.redis.io/releases/redis-2.8.3.tar.gz ###下载tar xzf redis-2.8.3.tar.gz ###解压cd redis-2.8.3 ##进入sudo make ###编译 2.编译完成后，在Src目录下，有四个可执行文件redis-server、redis-benchmark、redis-cli和redis.conf。然后拷贝到一个目录下123456mkdir /usr/rediscp redis-server /usr/rediscp redis-benchmark /usr/rediscp redis-cli /usr/rediscp ../redis.conf /usr/rediscd /usr/redis 3.启动服务12345678910111213141516171819202122232425262728293031redis-server redis.conf提示错误 -bash :redis-server:command not found###建立软连接ln -s /usr/redis/redis-server /usr/bin/redis-serverln -s /usr/redis/redis-cli /usr/bin/redis-cli重新启动redis-server /usr/redis/redis.conf _._ _.-``__ &apos;&apos;-._ _.-`` `. `_. &apos;&apos;-._ Redis 2.8.3 (00000000/0) 64 bit .-`` .-```. ```\/ _.,_ &apos;&apos;-._ ( &apos; , .-` | `, ) Running in stand alone mode |`-._`-...-` __...-.``-._|&apos;` _.-&apos;| Port: 6379 | `-._ `._ / _.-&apos; | PID: 23499 `-._ `-._ `-./ _.-&apos; _.-&apos; |`-._`-._ `-.__.-&apos; _.-&apos;_.-&apos;| | `-._`-._ _.-&apos;_.-&apos; | http://redis.io `-._ `-._`-.__.-&apos;_.-&apos; _.-&apos; |`-._`-._ `-.__.-&apos; _.-&apos;_.-&apos;| | `-._`-._ _.-&apos;_.-&apos; | `-._ `-._`-.__.-&apos;_.-&apos; _.-&apos; `-._ `-.__.-&apos; _.-&apos; `-._ _.-&apos; `-.__.-&apos;[23499] 09 Feb 11:48:55.779 # Server started, Redis version 2.8.3[23499] 09 Feb 11:48:55.779 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &apos;vm.overcommit_memory = 1&apos; to /etc/sysctl.conf and then reboot or run the command &apos;sysctl vm.overcommit_memory=1&apos; for this to take effect.[23499] 09 Feb 11:48:55.779 * The server is now ready to accept connections on port 6379启动成功 4.设置redis密码1sudo vim redis.conf ### 找到requirepass foobared。设置密码的方法就是去掉注释的#，把foobared替换成自己的密码即可]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[maven.test.skip maven打包跳过单元测试]]></title>
     <url>%2F2017%2F12%2F12%2Fmaven.test.skip%20maven%E6%89%93%E5%8C%85%E8%B7%B3%E8%BF%87%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%2F</url>
     <content type="text"><![CDATA[-DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。 -Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。 不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下 12mvn package -Dmaven.test.skip=true ## 使用maven.test.skip，不但跳过单元测试的运行，也跳过测试代码的编译。mvn package -DskipTests ## 跳过单元测试，但是会继续编译；如果没时间修改单元测试的bug，或者单元测试编译错误。]]></content>
@@ -77,5 +86,14 @@
     <title><![CDATA[Hello World]]></title>
     <url>%2F2017%2F09%2F28%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[linux服务器jdk环境准备]]></title>
+    <url>%2F2017%2F09%2F20%2Flinux%E6%9C%8D%E5%8A%A1%E5%99%A8java%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%2F</url>
+    <content type="text"><![CDATA[1.检查系统中的jdk版本(阿里云会默认安装openjdk)1java -version 显示： 123openjdk version &quot;1.8.0_102&quot;OpenJDK Runtime Environment (build 1.8.0_102-b14)OpenJDK 64-Bit Server VM (build 25.102-b14, mixed mode) 2.检测jdk安装包1234567java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64python-javapackages-3.4.1-11.el7.noarchtzdata-java-2016g-2.el7.noarchjavapackages-tools-3.4.1-11.el7.noarchjava-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64 #####3.卸载openjdk 1yum remove *openjdk* 4.安装新的jdk1234567mkdir /usr/java ### 创建文件夹sudo chmod 777 /usr/java ###设置权限cd /usr/java ### 到jdk官网上下载你想要的jdk(jdk-8u161-linux-x64.tar.gz)版本，下载完成之后将需要安装的jdk安装包放到这里mkdir -p /usr/lib/jvm ###jdk解压目录sudo tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/lib/jvmcd /usr/lib/jvmsudo mv jdk1.8.0_161 jdk1.8 ###重新命名 5.设置环境变量1sudo vim /etc/profile 在最后面添加: 1234export JAVA_HOME=/usr/lib/jvm/jdk1.8 export JRE_HOME=$&#123;JAVA_HOME&#125;/jre export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH 使profile配置生效 1source /etc/profile 6.检查jdk是否安装成功1java -version 显示: 123java version &quot;1.8.0_161&quot;Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode) 这样jdk就安装成功了]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>java</tag>
+      </tags>
   </entry>
 </search>
