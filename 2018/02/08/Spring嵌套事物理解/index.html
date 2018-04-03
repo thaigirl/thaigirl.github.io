@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="spring," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="三流厨子四流码农五流段子手">
-<meta property="og:type" content="website">
-<meta property="og:title" content="敲代码的">
-<meta property="og:url" content="https://thaigirl.github.io/archives/2018/02/index.html">
+<meta name="description" content="事物的基本原理Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行： 12345获取连接 Connection con = DriverManager.getConnection()开启事务con.setAutoCommit(true/false);执行CRUD提交事务/回滚事务 c">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring嵌套事物理解">
+<meta property="og:url" content="https://thaigirl.github.io/2018/02/08/Spring嵌套事物理解/index.html">
 <meta property="og:site_name" content="敲代码的">
-<meta property="og:description" content="三流厨子四流码农五流段子手">
+<meta property="og:description" content="事物的基本原理Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行： 12345获取连接 Connection con = DriverManager.getConnection()开启事务con.setAutoCommit(true/false);执行CRUD提交事务/回滚事务 c">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-03T07:16:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="敲代码的">
-<meta name="twitter:description" content="三流厨子四流码农五流段子手">
+<meta name="twitter:title" content="Spring嵌套事物理解">
+<meta name="twitter:description" content="事物的基本原理Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行： 12345获取连接 Connection con = DriverManager.getConnection()开启事务con.setAutoCommit(true/false);执行CRUD提交事务/回滚事务 c">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://thaigirl.github.io/archives/2018/02/"/>
+  <link rel="canonical" href="https://thaigirl.github.io/2018/02/08/Spring嵌套事物理解/"/>
 
 
 
 
 
-  <title>归档 | 敲代码的</title>
+  <title>Spring嵌套事物理解 | 敲代码的</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,111 +295,289 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 9 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thaigirl.github.io/2018/02/08/Spring嵌套事物理解/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="看见我的影子没">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="敲代码的">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/02/08/Spring嵌套事物理解/" itemprop="url">
-              
-                <span itemprop="name">Spring嵌套事物理解</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Spring嵌套事物理解</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-08T20:39:35+08:00"
-              content="2018-02-08" >
-          02-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T20:39:35+08:00">
+                2018-02-08
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/08/Spring嵌套事物理解/" class="leancloud_visitors" data-flag-title="Spring嵌套事物理解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/04/No space left on device Linux系统磁盘空间占满/" itemprop="url">
-              
-                <span itemprop="name">No space left on device Linux系统磁盘占满解决方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-04T15:39:35+08:00"
-              content="2018-02-04" >
-          02-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h5 id="事物的基本原理"><a href="#事物的基本原理" class="headerlink" title="事物的基本原理"></a>事物的基本原理</h5><p>Spring事务 的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。对于纯JDBC操作数据库，想要用到事务，可以按照以下步骤进行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">获取连接 Connection con = DriverManager.getConnection()</div><div class="line">开启事务con.setAutoCommit(true/false);</div><div class="line">执行CRUD</div><div class="line">提交事务/回滚事务 con.commit() / con.rollback();</div><div class="line">关闭连接 conn.close();</div></pre></td></tr></table></figure>
+<p>使用Spring的事务管理功能后，我们可以不再写步骤 2 和 4 的代码，而是由Spirng 自动完成。 那么Spring是如何在我们书写的 CRUD 之前和之后开启事务和关闭事务的呢？解决这个问题，也就可以从整体上理解Spring的事务管理实现原理了。下面简单地介绍下，注解方式为例子<br>配置文件开启注解驱动，在相关的类和方法上通过注解@Transactional标识。<br>spring 在启动的时候会去解析生成相关的bean，这时候会查看拥有相关注解的类和方法，并且为这些类和方法生成代理，并根据@Transaction的相关参数进行相关配置注入，这样就在代理中为我们把相关的事务处理掉了（开启正常提交事务，异常回滚事务）。<br>真正的数据库层的事务提交和回滚是通过binlog或者redo log实现的。</p>
+<h5 id="Spring事物的传播属性"><a href="#Spring事物的传播属性" class="headerlink" title="Spring事物的传播属性"></a>Spring事物的传播属性</h5><p>所谓spring事务的传播属性，就是定义在存在多个事务同时存在的时候，spring应该如何处理这些事务的行为。这些属性在TransactionDefinition中定义，具体常量的解释见下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常量</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">PROPAGATION_REQUIRED</td>
+<td style="text-align:left">支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择，也是 Spring 默认的事务的传播。</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_REQUIRES_NEW</td>
+<td style="text-align:left">新建事务，如果当前存在事务，把当前事务挂起。新建的事务将和被挂起的事务没有任何关系，是两个独立的事务，外层事务失败回滚之后，不能回滚内层事务执行的结果，内层事务失败抛出异常，外层事务捕获，也可以不处理回滚操作</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_SUPPORTS</td>
+<td style="text-align:left">支持当前事务，如果当前没有事务，就以非事务方式执行。</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_MANDATORY</td>
+<td style="text-align:left">支持当前事物，如果当前没有事物，就跑出异常</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_NOT_SUPPORTED</td>
+<td style="text-align:left">以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_NEVER</td>
+<td style="text-align:left">以非事务方式执行，如果当前存在事务，则抛出异常。</td>
+</tr>
+<tr>
+<td style="text-align:left">PROPAGATION_NESTED</td>
+<td style="text-align:left">如果一个活动的事务存在，则运行在一个嵌套的事务中。如果没有活动事务，则按REQUIRED属性执行。它使用了一个单独的事务，这个事务拥有多个可以回滚的保存点。内部事务的回滚不会对外部事务造成影响。它只对DataSourceTransactionManager事务管理器起效。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h5><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>隔离级别的值</th>
+<th>导致的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read-Uncommitted</td>
+<td>0</td>
+<td>导致脏读</td>
+</tr>
+<tr>
+<td>Read-Committed</td>
+<td>1</td>
+<td>避免脏读，允许不可重复读和幻读</td>
+</tr>
+<tr>
+<td>Repeatable-Read</td>
+<td>2</td>
+<td>避免脏读，不可重复读，允许幻读</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>3</td>
+<td>串行化读，事务只能一个一个执行，避免了脏读、不可重复读、幻读。效率慢，使用时慎重</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h6 id="脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。"><a href="#脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。" class="headerlink" title="脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。"></a>脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。</h6><h6 id="不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。"><a href="#不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。" class="headerlink" title="不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。"></a>不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。</h6><h6 id="幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。"><a href="#幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。" class="headerlink" title="幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。"></a>幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。</h6><h6 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h6><h6 id="隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。"><a href="#隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。" class="headerlink" title="隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。"></a>隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。</h6><h6 id="大多数的数据库默认隔离级别为-Read-Commited，比如-SqlServer、Oracle"><a href="#大多数的数据库默认隔离级别为-Read-Commited，比如-SqlServer、Oracle" class="headerlink" title="大多数的数据库默认隔离级别为 Read Commited，比如 SqlServer、Oracle"></a>大多数的数据库默认隔离级别为 Read Commited，比如 SqlServer、Oracle</h6><h6 id="少数数据库默认隔离级别为：Repeatable-Read-比如：-MySQL-InnoDB"><a href="#少数数据库默认隔离级别为：Repeatable-Read-比如：-MySQL-InnoDB" class="headerlink" title="少数数据库默认隔离级别为：Repeatable Read 比如： MySQL InnoDB"></a>少数数据库默认隔离级别为：Repeatable Read 比如： MySQL InnoDB</h6></blockquote>
+<h5 id="Spring中的隔离级别"><a href="#Spring中的隔离级别" class="headerlink" title="Spring中的隔离级别"></a>Spring中的隔离级别</h5><table>
+<thead>
+<tr>
+<th>常量</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISOLATION_DEFAULT</td>
+<td>这是个 PlatfromTransactionManager 默认的隔离级别，使用数据库默认的事务隔离级别。另外四个与 JDBC 的隔离级别相对应。</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_UNCOMMITTED</td>
+<td>这是事务最低的隔离级别，它充许另外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_COMMITTED</td>
+<td>保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。</td>
+</tr>
+<tr>
+<td>ISOLATION_REPEATABLE_READ</td>
+<td>这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。</td>
+</tr>
+<tr>
+<td>ISOLATION_SERIALIZABLE</td>
+<td>这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="事物的嵌套"><a href="#事物的嵌套" class="headerlink" title="事物的嵌套"></a>事物的嵌套</h5><p>通过上面的理论知识的铺垫，我们大致知道了数据库事务和spring事务的一些属性和特点，接下来我们通过分析一些嵌套事务的场景，来深入理解spring事务传播的机制。<br>假设外层事务 <strong><em>Service A</em></strong> 的 <strong>Method A() </strong>调用 内层<strong>Service B</strong> 的 <strong>Method B()</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/** </div><div class="line">* 事务属性配置为 PROPAGATION_REQUIRED </div><div class="line">*/ </div><div class="line">void methodA() &#123; </div><div class="line">   // 调用 ServiceB 的方法 </div><div class="line">   ServiceB.methodB(); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果<strong>ServiceB.methodB()</strong> 的事务级别定义为<strong>PROPAGATION_REQUIRED</strong>，那么执行 <strong>ServiceA.methodA() </strong>的时候spring已经起了事务，这时调用 <strong>ServiceB.methodB()</strong>，<strong>ServiceB.methodB()</strong> 看到自己已经运行在 <strong>ServiceA.methodA()</strong> 的事务内部，就不再起新的事务。<br>假如 <strong>ServiceB.methodB()</strong> 运行的时候发现自己没有在事务中，他就会为自己分配一个事务。<br>这样，在 <strong>ServiceA.methodA() </strong>或者在 <strong>ServiceB.methodB() </strong>内的任何地方出现异常，事务都会被回滚。<br><strong>PROPAGATION_REQUIRES_NEW</strong><br>比如我们设计<strong>ServiceA.methodA()</strong> 的事务级别为 <strong>PROPAGATION_REQUIRED</strong>，<strong>ServiceB.methodB()</strong> 的事务级别为 <strong>PROPAGATION_REQUIRES_NEW</strong>。<br>那么当执行到 <strong>ServiceB.methodB()</strong> 的时候，<strong>ServiceA.methodA()</strong> 所在的事务就会挂起，<strong>ServiceB.methodB()</strong> 会起一个新的事务，等待 <strong>ServiceB.methodB()</strong> 的事务完成以后，它才继续执行。<br>他与<strong>PROPAGATION_REQUIRED</strong> 的事务区别在于事务的回滚程度了。因为 <strong>ServiceB.methodB()</strong> 是新起一个事务，那么就是存在两个不同的事务。如果 <strong>ServiceB.methodB()</strong> 已经提交，那么 <strong>ServiceA.methodA()</strong> 失败回滚，<strong>ServiceB.methodB()</strong> 是不会回滚的。如果 <strong>ServiceB.methodB()</strong> 失败回滚，如果他抛出的异常被 <strong>ServiceA.methodA()</strong> 捕获，<strong>ServiceA.methodA()</strong> 事务仍然可能提交(主要看B抛出的异常是不是A会回滚的异常)。<br><strong>PROPAGATION_SUPPORTS</strong><br>假设<strong>ServiceB.methodB()</strong> 的事务级别为 <strong>PROPAGATION_SUPPORTS</strong>，那么当执行到<strong>ServiceB.methodB()</strong>时，如果发现<strong>ServiceA.methodA()</strong>已经开启了一个事务，则加入当前的事务，如果发现<strong>ServiceA.methodA()</strong>没有开启事务，则自己也不开启事务。这种时候，内部方法的事务性完全依赖于最外层的事务。<br><strong>PROPAGATION_NESTED</strong><br>现在的情况就变得比较复杂了, <strong>ServiceB.methodB()</strong> 的事务属性被配置为 <strong>PROPAGATION_NESTED</strong>, 此时两者之间又将如何协作呢?  <strong>ServiceB.methodB</strong> 如果 <strong>rollback</strong>, 那么内部事务(即 <strong>ServiceB.methodB</strong>) 将回滚到它执行前的 <strong>SavePoint</strong> 而外部事务(即 <strong>ServiceA.methodA</strong>) 可以有以下两种处理方式:<br><strong>A</strong>、捕获异常，执行异常分支逻辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">void methodA() &#123; </div><div class="line">    try &#123; </div><div class="line">    ServiceB.methodB(); </div><div class="line">    &#125; catch (SomeException) &#123; </div><div class="line">    // 执行其他业务, 如 ServiceC.methodC(); </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方式也是嵌套事务最有价值的地方, 它起到了分支执行的效果, 如果 <strong>ServiceB.methodB</strong> 失败, 那么执行 <strong>ServiceC.methodC()</strong>, 而 <strong>ServiceB.methodB</strong> 已经回滚到它执行之前的 SavePoint, 所以不会产生脏数据(相当于此方法从未执行过), 这种特性可以用在某些特殊的业务中, 而 <strong>PROPAGATION_REQUIRED</strong> 和 <strong>PROPAGATION_REQUIRES_NEW</strong> 都没有办法做到这一点。<br><strong>B</strong>、 外部事务回滚/提交 代码不做任何修改, 那么如果内部事务(<strong>ServiceB.methodB</strong>) <strong>rollback</strong>, 那么首先 <strong>ServiceB.methodB</strong> 回滚到它执行之前的 SavePoint(在任何情况下都会如此), 外部事务(即 <strong>ServiceA.methodA</strong>) 将根据具体的配置决定自己是 <strong>commit</strong> 还是 <strong>rollback</strong></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/04/No space left on device Linux系统磁盘空间占满/" rel="next" title="No space left on device Linux系统磁盘占满解决方法">
+                <i class="fa fa-chevron-left"></i> No space left on device Linux系统磁盘占满解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -405,6 +585,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -425,8 +609,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,6 +706,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#事物的基本原理"><span class="nav-number">1.</span> <span class="nav-text">事物的基本原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spring事物的传播属性"><span class="nav-number">2.</span> <span class="nav-text">Spring事物的传播属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库的隔离级别"><span class="nav-number">3.</span> <span class="nav-text">数据库的隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。"><span class="nav-number">3.1.</span> <span class="nav-text">脏读：一事务对数据进行了增删改，但未提交，另一事务可以读取到未提交的数据。如果第一个事务这时候回滚了，那么第二个事务就读到了脏数据。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。"><span class="nav-number">3.2.</span> <span class="nav-text">不可重复读：一个事务中发生了两次读操作，第一次读操作和第二次操作之间，另外一个事务对数据进行了修改，这时候两次读取的数据是不一致的。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。"><span class="nav-number">3.3.</span> <span class="nav-text">幻读：第一个事务对一定范围的数据进行批量修改，第二个事务在这个范围增加一条数据，这时候第一个事务就会丢失对新增数据的修改。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#总结："><span class="nav-number">3.4.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。"><span class="nav-number">3.5.</span> <span class="nav-text">隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#大多数的数据库默认隔离级别为-Read-Commited，比如-SqlServer、Oracle"><span class="nav-number">3.6.</span> <span class="nav-text">大多数的数据库默认隔离级别为 Read Commited，比如 SqlServer、Oracle</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#少数数据库默认隔离级别为：Repeatable-Read-比如：-MySQL-InnoDB"><span class="nav-number">3.7.</span> <span class="nav-text">少数数据库默认隔离级别为：Repeatable Read 比如： MySQL InnoDB</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spring中的隔离级别"><span class="nav-number">4.</span> <span class="nav-text">Spring中的隔离级别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事物的嵌套"><span class="nav-number">5.</span> <span class="nav-text">事物的嵌套</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -648,6 +857,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

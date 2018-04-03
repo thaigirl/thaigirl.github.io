@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>https://thaigirl.github.io/2018/02/04/No%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1/</loc>
+        <lastmod>2018-04-03T07:17:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://thaigirl.github.io/2018/02/08/Spring%E5%B5%8C%E5%A5%97%E4%BA%8B%E7%89%A9%E7%90%86%E8%A7%A3/</loc>
+        <lastmod>2018-04-03T07:16:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://thaigirl.github.io/2017/09/20/linux%E6%9C%8D%E5%8A%A1%E5%99%A8java%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</loc>
         <lastmod>2018-03-23T09:48:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -41,30 +57,6 @@
     <url>
         <loc>https://thaigirl.github.io/2017/12/12/maven.test.skip%20maven%E6%89%93%E5%8C%85%E8%B7%B3%E8%BF%87%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
         <lastmod>2017-12-16T08:31:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://thaigirl.github.io/2017/12/08/Spring%E5%B5%8C%E5%A5%97%E4%BA%8B%E7%89%A9%E7%90%86%E8%A7%A3/</loc>
-        <lastmod>2017-12-08T12:17:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://thaigirl.github.io/2017/12/06/java%E4%BD%BF%E7%94%A8getParts()%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
-        <lastmod>2017-12-06T11:32:40.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://thaigirl.github.io/2017/12/04/No%20space%20left%20on%20device%20Linux%E7%B3%BB%E7%BB%9F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%8D%A0%E6%BB%A1/</loc>
-        <lastmod>2017-12-04T07:49:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
